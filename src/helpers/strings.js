@@ -1,9 +1,15 @@
 module.exports = {
   queryString: [
-    'visual studio'
+    'visual studio',
+    'dotnet',
+    'webdev',
+    'ITJokes',
+    'CSharp',
+    'DevOps',
+    'Angular'
   ],
   queryStringSubQuery: [
-    ' tips'
+    ''
   ],
   blockedStrings: [
     ''
