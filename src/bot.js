@@ -8,8 +8,8 @@ var sentiment = require('./helpers/sentiment')
 var Twitter = new Twit(config)
 
 // Frequency in minutes
-var retweetFrequency = 5
-var favoriteFrequency = 5
+var retweetFrequency = 1
+var favoriteFrequency = 1
 
 // RANDOM QUERY STRING  =========================
 
@@ -18,7 +18,7 @@ var qsSq = ura(strings.queryStringSubQuery)
 var rt = ura(strings.resultType)
 var rs = ura(strings.responseString)
 
-// https://dev.twitter.com/rest/reference/get/search/tweets
+// https://dev.twitter.com/rest/referenceoogg/get/search/tweets
 // A UTF-8, URL-encoded search query of 500 characters maximum, including operators.
 // Queries may additionally be limited by complexity.
 
@@ -51,10 +51,10 @@ var retweet = function () {
         var retweetText = data.statuses[0].text
 
                 // setup http call
-        var httpCall = sentiment.init()
+        var httpCall = sentiment.init();
 
         httpCall.send('txt=' + retweetText).end(function (result) {
-          var sentim = result.body.result.sentiment
+          var sentim = result.body.result.sentiment;
           var confidence = parseFloat(result.body.result.confidence)
           console.log(confidence, sentim)
           // if sentiment is Negative and the confidence is above 75%
@@ -86,7 +86,7 @@ var retweet = function () {
 // retweet on bot start
 retweet()
     // retweet in every x minutes
-setInterval(retweet, 1000 * 60 * retweetFrequency)
+setInterval(retweet, 1000 * 1 * retweetFrequency)
 
 // FAVORITE BOT====================
 
@@ -143,7 +143,7 @@ var favoriteTweet = function () {
 // favorite on bot start
 favoriteTweet()
     // favorite in every x minutes
-setInterval(favoriteTweet, 1000 * 60 * favoriteFrequency)
+setInterval(favoriteTweet, 1000 * 1 * favoriteFrequency)
 
 // STREAM API for interacting with a USER =======
 // set up a user stream
@@ -178,7 +178,7 @@ function tweetNow (tweetTxt) {
   }
 
     // HARCODE user name in and check before RT
-  var n = tweetTxt.search(/@UserNameHere/i)
+  var n = tweetTxt.search(/@DesignPuddle/i)
 
   if (n !== -1) {
     console.log('TWEET SELF! Skipped!!')

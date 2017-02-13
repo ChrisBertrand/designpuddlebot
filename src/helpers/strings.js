@@ -1,9 +1,9 @@
 module.exports = {
   queryString: [
-    ''
+    'javascript'
   ],
   queryStringSubQuery: [
-    ''
+    ' frameworks'
   ],
   blockedStrings: [
     ''
