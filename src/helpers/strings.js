@@ -1,17 +1,16 @@
 module.exports = {
   queryString: [
-    'javascript'
+    'visual studio'
   ],
   queryStringSubQuery: [
-    ' frameworks',
     ' tips'
   ],
   blockedStrings: [
     ''
   ],
   resultType: [
-    // 'mixed',
-    // 'recent',
+    'mixed',
+    'recent',
     'popular'
   ],
   responseString: [
