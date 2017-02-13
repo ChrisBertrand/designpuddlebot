@@ -8,8 +8,8 @@ var sentiment = require('./helpers/sentiment')
 var Twitter = new Twit(config)
 
 // Frequency in minutes
-var retweetFrequency = 1
-var favoriteFrequency = 1
+var retweetFrequency = 60
+var favoriteFrequency = 30
 
 // RANDOM QUERY STRING  =========================
 
@@ -18,7 +18,7 @@ var qsSq = ura(strings.queryStringSubQuery)
 var rt = ura(strings.resultType)
 var rs = ura(strings.responseString)
 
-// https://dev.twitter.com/rest/referenceoogg/get/search/tweets
+// https://dev.twitter.com/rest/reference/get/search/tweets
 // A UTF-8, URL-encoded search query of 500 characters maximum, including operators.
 // Queries may additionally be limited by complexity.
 
@@ -86,7 +86,7 @@ var retweet = function () {
 // retweet on bot start
 retweet()
     // retweet in every x minutes
-setInterval(retweet, 1000 * 1 * retweetFrequency)
+setInterval(retweet, 1000 * 60 * retweetFrequency)
 
 // FAVORITE BOT====================
 

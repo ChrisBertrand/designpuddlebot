@@ -3,14 +3,15 @@ module.exports = {
     'javascript'
   ],
   queryStringSubQuery: [
-    ' frameworks'
+    ' frameworks',
+    ' tips'
   ],
   blockedStrings: [
     ''
   ],
   resultType: [
-    'mixed',
-    'recent',
+    // 'mixed',
+    // 'recent',
     'popular'
   ],
   responseString: [
