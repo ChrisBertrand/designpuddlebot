@@ -1,22 +1,22 @@
 // Dependencies =========================
-var Twit = require('twit')
-var ura = require('unique-random-array')
-var config = require('./config')
-var strings = require('./helpers/strings')
-var sentiment = require('./helpers/sentiment')
+var Twit = require('twit');
+var ura = require('unique-random-array');
+var config = require('./config');
+var strings = require('./helpers/strings');
+var sentiment = require('./helpers/sentiment');
 
-var Twitter = new Twit(config)
+var Twitter = new Twit(config);
 
 // Frequency in minutes
-var retweetFrequency = 26
-var favoriteFrequency = 33
+var retweetFrequency = 55;
+var favoriteFrequency = 122;
 
 // RANDOM QUERY STRING  =========================
 
-var qs = ura(strings.queryString)
-var qsSq = ura(strings.queryStringSubQuery)
-var rt = ura(strings.resultType)
-var rs = ura(strings.responseString)
+var qs = ura(strings.queryString);
+var qsSq = ura(strings.queryStringSubQuery);
+var rt = ura(strings.resultType);
+//var rs = ura(strings.responseString);
 
 // https://dev.twitter.com/rest/reference/get/search/tweets
 // A UTF-8, URL-encoded search query of 500 characters maximum, including operators.
@@ -66,7 +66,7 @@ var retweet = function () {
           }
         })
       } catch (e) {
-        console.log('retweetId DERP!', e.message, 'Query String:', paramQS + 'TweetId: ' + retweetId + 'Tweet: ' + retweetText)
+        console.log('retweetId DERP!', e.message, 'Query String:', paramQS + ' TweetId: ' + retweetId + ' Tweet: ' + retweetText);
         return
       }
             // Tell TWITTER to retweet
@@ -74,11 +74,11 @@ var retweet = function () {
         id: retweetId
       }, function (err, response) {
         if (response) {
-          console.log('RETWEETED!', ' Query String:', paramQS + 'TweetId: ' + retweetId + 'Tweet: ' + retweetText)
+          console.log('RETWEETED!', ' Query String:', paramQS + ' TweetId: ' + retweetId + ' Tweet: ' + retweetText)
         }
                 // if there was an error while tweeting
         if (err) {
-          console.log('RETWEET ERROR! Duplication maybe...:', err, 'Query String:', paramQS + 'TweetId: ' + retweetId + 'Tweet: ' + retweetText)
+          console.log('RETWEET ERROR! Duplication maybe...:', err, 'Query String:', paramQS + ' TweetId: ' + retweetId + ' Tweet: ' + retweetText);
         }
       })
     } else { console.log('Something went wrong while SEARCHING...') }
@@ -86,22 +86,22 @@ var retweet = function () {
 }
 
 // retweet on bot start
-retweet()
+retweet();
     // retweet in every x minutes
-setInterval(retweet, 1000 * 60 * retweetFrequency)
+setInterval(retweet, 1000 * 60 * retweetFrequency);
 
 // FAVORITE BOT====================
 
 // find a random tweet and 'favorite' it
 var favoriteTweet = function () {
-  var paramQS = qs()
-  paramQS += qsSq()
-  var paramRT = rt()
+  var paramQS = qs();
+  paramQS += qsSq();
+  var paramRT = rt();
   var params = {
     q: paramQS + paramBls(),
     result_type: paramRT,
     lang: 'en'
-  }
+  };
 
     // find the tweet
   Twitter.get('search/tweets', params, function (err, data) {
@@ -113,12 +113,12 @@ var favoriteTweet = function () {
     if (typeof randomTweet !== 'undefined') {
             // run sentiment check ==========
             // setup http call
-      var httpCall = sentiment.init()
-      var favoriteText = randomTweet['text']
+      var httpCall = sentiment.init();
+      var favoriteText = randomTweet['text'];
 
       httpCall.send('txt=' + favoriteText).end(function (result) {
-        var sentim = result.body.result.sentiment
-        var confidence = parseFloat(result.body.result.confidence)
+        var sentim = result.body.result.sentiment;
+        var confidence = parseFloat(result.body.result.confidence);
         console.log(confidence, sentim)
         // if sentiment is Negative and the confidence is above 75%
         if (sentim === 'Negative' && confidence >= 75) {
@@ -133,9 +133,9 @@ var favoriteTweet = function () {
       }, function (err, response) {
                 // if there was an error while 'favorite'
         if (err) {
-          console.log('CANNOT BE FAVORITE... Error: ', err, ' Query String: ' + paramQS + 'TweetId: ' + randomTweet.id_str + 'TweetText: ' + randomTweet.text)
+          console.log('CANNOT BE FAVORITED... Error: ', err, ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text)
         } else {
-          console.log('FAVORITED... Success!!!', ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + 'TweetText: ' + randomTweet.text)
+          console.log('FAVORITED... Success!!!', ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text)
         }
       })
     }
@@ -143,35 +143,36 @@ var favoriteTweet = function () {
 }
 
 // favorite on bot start
-favoriteTweet()
+favoriteTweet();
     // favorite in every x minutes
-setInterval(favoriteTweet, 1000 * 60 * favoriteFrequency)
+setInterval(favoriteTweet, 1000 * 60 * favoriteFrequency);
 
 // STREAM API for interacting with a USER =======
 // set up a user stream
-var stream = Twitter.stream('user')
+var stream = Twitter.stream('user');
 
 // REPLY-FOLLOW BOT ============================
 
 // what to do when someone follows you?
-stream.on('follow', followed)
+//stream.on('follow', followed)
 
 // ...trigger the callback
-function followed (event) {
-  console.log('Follow Event now RUNNING')
-        // get USER's twitter handle (screen name)
-  var screenName = event.source.screen_name
+// function followed (event) {
+//   console.log('Follow Event now RUNNING')
+//         // get USER's twitter handle (screen name)
+//   var screenName = event.source.screen_name
 
-    // CREATE RANDOM RESPONSE  ============================
-  var responseString = rs()
-  var find = 'screenName'
-  var regex = new RegExp(find, 'g')
-  responseString = responseString.replace(regex, screenName)
+//     // CREATE RANDOM RESPONSE  ============================
+//   // var responseString = rs()
+//   // var find = 'screenName'
+//   // var regex = new RegExp(find, 'g')
+//   // responseString = responseString.replace(regex, screenName)
 
-  // function that replies back to every USER who followed for the first time
-  console.log(responseString)
-  tweetNow(responseString)
-}
+//   // function that replies back to every USER who followed for the first time
+//   //console.log(responseString)
+//   // Don't want to send these messages out
+//   //tweetNow(responseString)
+// }
 
 // function definition to tweet back to USER who followed
 function tweetNow (tweetTxt) {
@@ -197,17 +198,17 @@ function tweetNow (tweetTxt) {
 
 // function to generate a random tweet tweet
 function ranDom (arr) {
-  var index = Math.floor(Math.random() * arr.length)
-  return arr[index]
+  var index = Math.floor(Math.random() * arr.length);
+  return arr[index];
 }
 
 function paramBls () {
-  var ret = ''
+  var ret = '';
   var arr = strings.blockedStrings
-  var i
-  var n
+  var i;
+  var n;
   for (i = 0, n = arr.length; i < n; i++) {
     ret += ' -' + arr[i]
   }
-  return ret
+  return ret;
 }
