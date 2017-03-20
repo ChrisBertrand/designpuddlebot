@@ -4,14 +4,19 @@ module.exports = {
     '#dotnet',
     'dotnet',
     '#webdev',
-    'ITJokes',
+    '#ITJokes',
     '#CSharp',
     '#DevOps',
     'AngularJS',
-    'Programming',
+    'CSS3',
     'web development',
     '#html',
-    '#CSS'
+    '#CSS',
+    'web design',
+    'web development',
+    'C Sharp',
+    'web dev',
+    'dev ops'
   ],
   queryStringSubQuery: [
     ''
