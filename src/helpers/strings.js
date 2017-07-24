@@ -10,20 +10,25 @@ module.exports = {
     'AngularJS',
     'CSS3',
     'web development',
-    '#html',
-    '#CSS',
+    'html',
+    'CSS',
     'web design',
     'web development',
-    'C Sharp',
+    'CSharp',
     'web dev',
-    'dev ops'
+    'dev ops',
+    'docker',
+    'microservices',
+    'rabbitmq',
+    'dotnetcore'
   ],
   queryStringSubQuery: [
     ''
   ],
   blockedStrings: [
     'sex',
-    'porn'
+    'porn',
+    '@CloudExpo'
   ],
   resultType: [
     'popular'

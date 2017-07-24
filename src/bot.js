@@ -8,8 +8,8 @@ var sentiment = require('./helpers/sentiment');
 var Twitter = new Twit(config);
 
 // Frequency in minutes
-var retweetFrequency = 55;
-var favoriteFrequency = 122;
+var retweetFrequency = 93;
+var favoriteFrequency = 56;
 
 // RANDOM QUERY STRING  =========================
 
