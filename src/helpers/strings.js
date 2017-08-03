@@ -1,26 +1,22 @@
 module.exports = {
   queryString: [
-    'visual studio',
     '#dotnet',
     'dotnet',
     '#webdev',
     '#ITJokes',
     '#CSharp',
     '#DevOps',
-    'AngularJS',
-    'CSS3',
-    'web development',
-    'html',
-    'CSS',
-    'web design',
-    'web development',
-    'CSharp',
-    'web dev',
-    'dev ops',
-    'docker',
-    'microservices',
-    'rabbitmq',
-    'dotnetcore'
+    '#AngularJS',
+    '#CSS3',
+    '#webdevelopment',
+    '#docker',
+    '#microservices',
+    '#rabbitmq',
+    '#dotnetcore',
+    '#bigdata',
+    '#iot',
+    '#aws',
+    '#tech'
   ],
   queryStringSubQuery: [
     ''
@@ -28,7 +24,9 @@ module.exports = {
   blockedStrings: [
     'sex',
     'porn',
-    '@CloudExpo'
+    'CloudExpo',
+    'trump',
+    'draft'
   ],
   resultType: [
     'popular'

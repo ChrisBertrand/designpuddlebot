@@ -36,7 +36,6 @@ var retweet = function () {
   paramQS += qsSq();
   var paramRT = rt();
   var params = {
-    q: paramQS + paramBls(),
     result_type: paramRT,
     lang: 'en'
   };
