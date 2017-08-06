@@ -36,6 +36,7 @@ var retweet = function () {
   paramQS += qsSq();
   var paramRT = rt();
   var params = {
+    q: paramQS,
     result_type: paramRT,
     lang: 'en'
   };
@@ -80,7 +81,7 @@ var retweet = function () {
           console.log('RETWEET ERROR! Duplication maybe...:', err, 'Query String:', paramQS + ' TweetId: ' + retweetId + ' Tweet: ' + retweetText);
         }
       })
-    } else { console.log('Something went wrong while SEARCHING...') }
+    } else { console.log('Something went wrong while SEARCHING... ' + err.message) }
   })
 }
 
@@ -132,9 +133,9 @@ var favoriteTweet = function () {
       }, function (err, response) {
                 // if there was an error while 'favorite'
         if (err) {
-          console.log('CANNOT BE FAVORITED... Error: ', err, ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text)
+          console.log('CANNOT BE FAVORITED... Error: ', err, ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text);
         } else {
-          console.log('FAVORITED... Success!!!', ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text)
+          console.log('FAVORITED... Success!!!', ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text);
         }
       })
     }
@@ -148,7 +149,7 @@ setInterval(favoriteTweet, 1000 * 60 * favoriteFrequency);
 
 // STREAM API for interacting with a USER =======
 // set up a user stream
-var stream = Twitter.stream('user');
+//var stream = Twitter.stream('user');
 
 // REPLY-FOLLOW BOT ============================
 
@@ -198,16 +199,17 @@ function tweetNow (tweetTxt) {
 // function to generate a random tweet tweet
 function ranDom (arr) {
   var index = Math.floor(Math.random() * arr.length);
+  console.log('Random Value:' + index + " of ArraySize " + arr.length);
   return arr[index];
 }
 
 function paramBls () {
   var ret = '';
-  var arr = strings.blockedStrings
+  var arr = strings.blockedStrings;
   var i;
   var n;
   for (i = 0, n = arr.length; i < n; i++) {
-    ret += ' -' + arr[i]
+    ret += ' -' + arr[i];
   }
   return ret;
 }

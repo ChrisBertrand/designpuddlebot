@@ -1,22 +1,22 @@
 module.exports = {
   queryString: [
-    '#dotnet',
     'dotnet',
-    '#webdev',
-    '#ITJokes',
-    '#CSharp',
-    '#DevOps',
-    '#AngularJS',
-    '#CSS3',
-    '#webdevelopment',
-    '#docker',
-    '#microservices',
-    '#rabbitmq',
-    '#dotnetcore',
-    '#bigdata',
-    '#iot',
-    '#aws',
-    '#tech'
+    'otnet',
+    'webdev',
+    'ITJokes',
+    'CSharp',
+    'DevOps',
+    'AngularJS',
+    'CSS3',
+    'webdevelopment',
+    'docker',
+    'microservices',
+    'rabbitmq',
+    'dotnetcore',
+    'bigdata',
+    'iot',
+    'aws',
+    'tech'
   ],
   queryStringSubQuery: [
     ''
