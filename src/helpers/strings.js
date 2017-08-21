@@ -1,25 +1,24 @@
 module.exports = {
   queryString: [
-    'dotnet',
-    'otnet',
+    '#dotnet',
     'webdev',
-    'ITJokes',
+    '#ITJokes',
     'CSharp',
-    'DevOps',
+    '#DevOps',
     'AngularJS',
-    'CSS3',
+    '#CSS3',
     'webdevelopment',
-    'docker',
+    '#docker',
     'microservices',
-    'rabbitmq',
+    '#rabbitmq',
     'dotnetcore',
-    'bigdata',
-    'iot',
-    'aws',
+    '#bigdata',
+    '#iot',
+    '#aws',
     'tech'
   ],
   queryStringSubQuery: [
-    ''
+    '-from:cloudexpo'
   ],
   blockedStrings: [
     'sex',
