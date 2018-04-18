@@ -1,21 +1,21 @@
 module.exports = {
   queryString: [
     '#dotnet',
-    'webdev',
+    '#webdev',
     '#ITJokes',
-    'CSharp',
+    '#CSharp',
     '#DevOps',
     'AngularJS',
-    '#CSS3',
     'webdevelopment',
     '#docker',
-    'microservices',
+    '#microservices',
     '#rabbitmq',
     'dotnetcore',
     '#bigdata',
     '#iot',
-    '#aws',
-    'tech'
+    '#heroku',
+    '#developers',
+    '#SalesforceDev'
   ],
   queryStringSubQuery: [
     '-from:cloudexpo'
