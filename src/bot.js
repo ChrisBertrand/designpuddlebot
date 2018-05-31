@@ -7,16 +7,19 @@ var sentiment = require('./helpers/sentiment');
 
 var Twitter = new Twit(config);
 
-// Frequency in minutes
-var retweetFrequency = 93; // Change to random value
-var favoriteFrequency = 56;
+// Frequency in minutes -- Changed to random value between 1-100
+var retweetFrequency = RandomNumber(); 
+var favoriteFrequency = RandomNumber();
 
 // RANDOM QUERY STRING  =========================
-
 var qs = ura(strings.queryString);
 var qsSq = ura(strings.queryStringSubQuery);
 var rt = ura(strings.resultType);
-//var rs = ura(strings.responseString);
+
+function RandomNumber()
+{
+  return (Math.random() * 100);
+}
 
 // https://dev.twitter.com/rest/reference/get/search/tweets
 // A UTF-8, URL-encoded search query of 500 characters maximum, including operators.
@@ -42,17 +45,17 @@ var retweet = function () {
   };
 
   Twitter.get('search/tweets', params, function (err, data) {
-        // if there no errors
+    // if there no errors
     if (!err) {
-            // grab ID of tweet to retweet
+      // grab ID of tweet to retweet
       try {
-                // run sentiment check ==========
+        // run sentiment check ==========
         var tweets = data.statuses;
         var randomTweet = ranDom(tweets); 
         var retweetId = randomTweet.id_str;
         var retweetText = randomTweet.text;
 
-                // setup http call
+        // setup http call
         var httpCall = sentiment.init();
 
         httpCall.send('txt=' + retweetText).end(function (result) {
@@ -69,7 +72,7 @@ var retweet = function () {
         console.log('retweetId DERP!', e.message, 'Query String:', paramQS + ' TweetId: ' + retweetId + ' Tweet: ' + retweetText);
         return
       }
-            // Tell TWITTER to retweet
+      // Tell TWITTER to retweet
       Twitter.post('statuses/retweet/:id', {
         id: retweetId
       }, function (err, response) {
@@ -87,7 +90,7 @@ var retweet = function () {
 
 // retweet on bot start
 retweet();
-    // retweet in every x minutes
+// retweet in every x minutes
 setInterval(retweet, 1000 * 60 * retweetFrequency);
 
 // FAVORITE BOT====================
@@ -103,16 +106,16 @@ var favoriteTweet = function () {
     lang: 'en'
   };
 
-    // find the tweet
+  // find the tweet
   Twitter.get('search/tweets', params, function (err, data) {
-        // find tweets
+    // find tweets
     var tweet = data.statuses;
     var randomTweet = ranDom(tweet); // pick a random tweet
 
-        // if random tweet exists
+    // if random tweet exists
     if (typeof randomTweet !== 'undefined') {
-            // run sentiment check ==========
-            // setup http call
+      // run sentiment check ==========
+      // setup http call
       var httpCall = sentiment.init();
       var favoriteText = randomTweet['text'];
 
@@ -127,11 +130,11 @@ var favoriteTweet = function () {
         }
       })
 
-            // Tell TWITTER to 'favorite'
+      // Tell TWITTER to 'favorite'
       Twitter.post('favorites/create', {
         id: randomTweet.id_str
       }, function (err, response) {
-                // if there was an error while 'favorite'
+        // if there was an error while 'favorite'
         if (err) {
           console.log('CANNOT BE FAVORITED... Error: ', err, ' Query String: ' + paramQS + ' TweetId: ' + randomTweet.id_str + ' TweetText: ' + randomTweet.text);
         } else {
@@ -144,7 +147,7 @@ var favoriteTweet = function () {
 
 // favorite on bot start
 favoriteTweet();
-    // favorite in every x minutes
+// favorite in every x minutes
 setInterval(favoriteTweet, 1000 * 60 * favoriteFrequency);
 
 // function definition to tweet back to USER who followed
@@ -153,7 +156,7 @@ function tweetNow (tweetTxt) {
     status: tweetTxt
   }
 
-    // HARCODE user name in and check before RT
+  // HARCODE user name in and check before RT
   var n = tweetTxt.search(/@DesignPuddle/i)
 
   if (n !== -1) {
