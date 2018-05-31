@@ -8,7 +8,7 @@ var sentiment = require('./helpers/sentiment');
 var Twitter = new Twit(config);
 
 // Frequency in minutes
-var retweetFrequency = 93;
+var retweetFrequency = 93; // Change to random value
 var favoriteFrequency = 56;
 
 // RANDOM QUERY STRING  =========================
@@ -146,33 +146,6 @@ var favoriteTweet = function () {
 favoriteTweet();
     // favorite in every x minutes
 setInterval(favoriteTweet, 1000 * 60 * favoriteFrequency);
-
-// STREAM API for interacting with a USER =======
-// set up a user stream
-//var stream = Twitter.stream('user');
-
-// REPLY-FOLLOW BOT ============================
-
-// what to do when someone follows you?
-//stream.on('follow', followed)
-
-// ...trigger the callback
-// function followed (event) {
-//   console.log('Follow Event now RUNNING')
-//         // get USER's twitter handle (screen name)
-//   var screenName = event.source.screen_name
-
-//     // CREATE RANDOM RESPONSE  ============================
-//   // var responseString = rs()
-//   // var find = 'screenName'
-//   // var regex = new RegExp(find, 'g')
-//   // responseString = responseString.replace(regex, screenName)
-
-//   // function that replies back to every USER who followed for the first time
-//   //console.log(responseString)
-//   // Don't want to send these messages out
-//   //tweetNow(responseString)
-// }
 
 // function definition to tweet back to USER who followed
 function tweetNow (tweetTxt) {
