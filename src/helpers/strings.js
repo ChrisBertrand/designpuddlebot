@@ -5,22 +5,20 @@ module.exports = {
     '#ITJokes',
     '#CSharp',
     '#DevOps',
-    'AngularJS',
-    'webdevelopment',
+    '#Angular',
+    '#webdevelopment',
     '#docker',
     '#microservices',
     '#rabbitmq',
-    'dotnetcore',
-    '#bigdata',
-    '#iot',
+    '#dotnetcore',
     '#heroku',
-    '#developers',
-    '#SalesforceDev'
+    '#Salesforce'
   ],
   queryStringSubQuery: [
     '-from:cloudexpo'
   ],
   blockedStrings: [
+    '#BigData',
     'sex',
     'porn',
     'CloudExpo',
